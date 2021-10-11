@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Entity;
+namespace App\Shared\Domain\Entity;
 
-use App\Shared\Application\ValueObject\Id;
-use App\Shared\Application\ValueObject\ProjectName;
+use App\Shared\Domain\ValueObject\Id;
+use App\Shared\Domain\ValueObject\ProjectName;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
