@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Test;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

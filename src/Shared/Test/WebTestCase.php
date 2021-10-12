@@ -33,8 +33,9 @@ class WebTestCase extends SymfonyWebTestCase
     {
         parent::setUp();
 
-        $this->entityManager = $this->instantiateEntityManager();
+
         $this->client = new Client(['base_uri' => $_ENV['APP_URL'] . ':' . $_ENV['APP_PORT']]);
+        $this->entityManager = $this->instantiateEntityManager();
     }
 
     private function instantiateEntityManager(): EntityManagerInterface
