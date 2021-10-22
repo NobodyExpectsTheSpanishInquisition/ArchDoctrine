@@ -14,6 +14,19 @@ final class ProjectRepository implements ProjectRepositoryInterface
     {
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function findAll(): array
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+
+        $qb->select('projects')
+            ->from(Project::class, 'projects');
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function flush(): void
     {
         $this->entityManager->flush();

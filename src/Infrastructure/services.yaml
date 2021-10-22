@@ -1,0 +1,5 @@
+services:
+    App\Infrastructure\EntityManagerFactory: ~
+
+    Doctrine\ORM\EntityManagerInterface:
+      factory: ['@App\Infrastructure\EntityManagerFactory', 'create']

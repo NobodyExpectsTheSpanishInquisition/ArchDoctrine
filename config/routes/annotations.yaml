@@ -1,3 +1,7 @@
+ListProjects:
+    resource: ../../src/ListProjects/Infrastructure/ListProjectsController.php
+    type: annotation
+
 RegisterProject:
     resource: ../../src/RegisterProject/Infrastructure/RegisterProjectController.php
     type: annotation

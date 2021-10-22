@@ -24,4 +24,14 @@ final class Project
         $this->id = (string) $id;
         $this->name = (string) $name;
     }
+
+    public function getId(): Id
+    {
+        return new Id($this->id);
+    }
+
+    public function getName(): ProjectName
+    {
+        return new ProjectName($this->name);
+    }
 }

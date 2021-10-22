@@ -14,6 +14,15 @@ class WebTestCase extends SymfonyWebTestCase
     private EntityManagerInterface $entityManager;
     private Client $client;
 
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function get(string $uri): ResponseInterface
+    {
+        return $this->client->get($uri);
+    }
+
     protected function getEntityManager(): EntityManagerInterface
     {
         return $this->entityManager;
@@ -21,8 +30,8 @@ class WebTestCase extends SymfonyWebTestCase
 
     /**
      * @param array<string, mixed> $params
+     * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \JsonException
      */
     protected function post(string $uri, array $params): ResponseInterface
     {
@@ -32,7 +41,6 @@ class WebTestCase extends SymfonyWebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
 
         $this->client = new Client(['base_uri' => $_ENV['APP_URL'] . ':' . $_ENV['APP_PORT']]);
         $this->entityManager = $this->instantiateEntityManager();

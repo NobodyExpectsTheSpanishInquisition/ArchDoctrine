@@ -14,7 +14,23 @@ final class ProjectRepositoryTest extends IntegrationTestCase
     private ProjectRepositoryTestData $testData;
     private ProjectRepositoryTestAssertions $assertions;
 
-    public function test_ShouldSaveProjectInDatabase(): void
+    public function test_FindAll_ShouldReturnEmptyArray_WhenNoProjectsRegistered(): void
+    {
+        $projects = $this->repository->findAll();
+
+        $this->assertions->assertNoProjectsReturned($projects);
+    }
+
+    public function test_FindAll_ShouldReturnNonEmptyArray_WhenProjectsAreAlreadyRegistered(): void
+    {
+        $this->testData->loadProject();
+
+        $projects = $this->repository->findAll();
+
+        $this->assertions->assertProjectsReturned($projects);
+    }
+
+    public function test_Save_ShouldSaveProjectInDatabase(): void
     {
         $this->repository->save($this->testData->getProject());
         $this->repository->flush();
@@ -22,7 +38,7 @@ final class ProjectRepositoryTest extends IntegrationTestCase
         $this->assertions->assertProjectWasSavedInDatabase();
     }
 
-    public function test_ShouldThrowException_WhenProjectIsAlreadyInDatabase(): void
+    public function test_Save_ShouldThrowException_WhenProjectIsAlreadyInDatabase(): void
     {
         $this->testData->loadProject();
 
