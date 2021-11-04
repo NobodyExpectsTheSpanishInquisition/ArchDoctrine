@@ -12,8 +12,13 @@ final class ProjectRepositoryTestAssertions
     public function __construct(
         private EntityManagerInterface $entityManager,
         private ProjectRepositoryTestData $testData,
-        private ProjectRepositoryTest $testCase
+        private ProjectRepositoryTest $testCase,
     ) {
+    }
+
+    public function assertCorrectProjectWasReturned(Project $project): void
+    {
+        $this->testCase::assertEquals($this->testData->getProjectName(), $project->getName());
     }
 
     /**

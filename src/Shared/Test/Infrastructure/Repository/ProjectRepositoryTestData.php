@@ -24,11 +24,16 @@ final class ProjectRepositoryTestData
 
     public function getProject(): Project
     {
-        return new Project($this->getId(), new ProjectName('Test Project'));
+        return new Project($this->getId(), $this->getProjectName());
     }
 
     public function getId(): Id
     {
         return new Id('8B47594D-EED4-40B6-A8F6-C6EFE3DA3A0F');
+    }
+
+    public function getProjectName(): ProjectName
+    {
+        return new ProjectName('Test Project');
     }
 }

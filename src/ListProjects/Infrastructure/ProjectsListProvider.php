@@ -6,19 +6,19 @@ namespace App\ListProjects\Infrastructure;
 
 use App\ListProjects\Application\ProjectsListProviderInterface;
 use App\ListProjects\Application\ProjectsListView;
-use App\Shared\Application\Repository\ProjectRepositoryInterface;
+use App\Shared\Domain\Provider\ProjectProviderInterface;
 
 final class ProjectsListProvider implements ProjectsListProviderInterface
 {
     public function __construct(
-        private ProjectRepositoryInterface $projectRepository,
+        private ProjectProviderInterface $projectProvider,
         private ProjectsListMapper $mapper
     ) {
     }
 
     public function provide(): ProjectsListView
     {
-        $projects = $this->projectRepository->findAll();
+        $projects = $this->projectProvider->findAll();
 
         return $this->mapper->mapToView($projects);
     }

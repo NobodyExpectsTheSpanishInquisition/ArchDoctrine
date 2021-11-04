@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
+use App\Shared\Domain\ValueObject\MigrationsFolderPath;
 use App\Shared\Domain\ValueObject\ProjectName;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,6 +19,9 @@ final class Project
 
     #[ORM\Column(type: 'string')]
     private string $name;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $migrationsFolderPath = null;
 
     public function __construct(Id $id, ProjectName $name)
     {
@@ -33,5 +37,10 @@ final class Project
     public function getName(): ProjectName
     {
         return new ProjectName($this->name);
+    }
+
+    public function registerMigrations(MigrationsFolderPath $migrationsFolderPath): void
+    {
+        $this->migrationsFolderPath = (string) $migrationsFolderPath;
     }
 }

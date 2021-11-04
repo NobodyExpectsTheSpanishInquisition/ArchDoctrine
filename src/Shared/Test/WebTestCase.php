@@ -33,6 +33,16 @@ class WebTestCase extends SymfonyWebTestCase
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
+    protected function patch(string $uri, array $params): ResponseInterface
+    {
+        return $this->client->patch($uri, ['form_params' => $params]);
+    }
+
+    /**
+     * @param array<string, mixed> $params
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     protected function post(string $uri, array $params): ResponseInterface
     {
         return $this->client->post($uri, ['form_params' => $params]);
