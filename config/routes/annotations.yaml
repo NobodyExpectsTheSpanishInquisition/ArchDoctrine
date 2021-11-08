@@ -10,6 +10,10 @@ RegisterMigrations:
     resource: ../../src/RegisterMigrations/Infrastructure/RegisterMigrationsController.php
     type: annotation
 
+ListMigrations:
+    resource: ../../src/ListMigrations/Infrastructure/ListMigrationsController.php
+    type: annotation
+
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
